@@ -18,8 +18,12 @@ const clients = [{
 
 
 /**
- * CRUD, 
+ * [GET] /
+ * @returns {String} containing 'Hello world'
  */
+ app.get(`/`, (req, res) => {
+  res.send(`Hello world`)
+})
 
 app.listen(PORT, () => {
   console.log(`app listening at port ${PORT}`);
