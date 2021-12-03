@@ -1,7 +1,12 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+
 const app = express();
 const PORT = 3000;
 
+/**
+ * CRUD, 
+ */
 
 const clients = [{
   id: 0,
@@ -59,19 +64,20 @@ app.delete('/client.:id', (req, res) => {
  * [UPDATE] /client by id
  * @returns {Object} client with modifications
  */
-app.update('/client/:id', (req, res) => {
+
+app.put('/client/:id', (req, res) => {
   let id = req.query.id;
   let update = req.body; //(? or param)
   
   getClient(id);
   console.log(client)
       
-  function getUpdate (c){
+  function updateClient (c){
     c.name = update.name;
     c.email = update.email;
   }
 
-  getUpdate(client);
+  updateClient(client);
   res.json(client);
 })
 
