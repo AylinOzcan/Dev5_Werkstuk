@@ -1,21 +1,19 @@
 const express = require("express");
-//const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
+const cors = require('cors');
+const db = require('./models');
 
 const app = express();
 const PORT = 3000;
 
-/*
-const clients = [{
-  id: 0,
-  name: `Aylin Özcan`,
-  email: `aylin.ozcan@student.ehb.be`
-}, {
-  id: 1,
-  name: `Doctor Who`,
-  email: `doctorw@tardis.com`
-}];
-*/
+//db.sequelize.sync();
+//for development purposes
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
+// const pg = require('pg');
+// pg.connect('postgres://postgres:password@localhost:5432/development5_db');
 
 /**
  * CRUD, 
@@ -24,18 +22,3 @@ const clients = [{
 app.listen(PORT, () => {
   console.log(`app listening at port ${PORT}`);
 });
-
-/**
- * [FUNCTION] getClient
- * @param {*} id 
- * @returns client with correspended id
- */
-/*
-function getClient (id) {
-  for(let client in clients){
-    if(id == client[id]){
-      return client;
-    }
-  }
-}
-*/
